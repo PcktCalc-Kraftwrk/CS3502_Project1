@@ -1,22 +1,54 @@
-
-// C# program to illustrate the 
-// Console.In Property 
-using System; 
-using System.Collections.Generic; 
-using System.Linq; 
-using System.Text; 
-using System.Threading.Tasks; 
-  
-namespace GFG { 
-  
-class Program { 
-  
-    static void Main(string[] args) 
-    { 
-  		Console.WriteLine("Standard Input Stream");
-        // Get the Standard Input Stream 
-        Console.WriteLine("Standard Input Stream: {0}", 
-                                          Console.In); 
-    }  
-} 
-} 
+﻿// " <<< Only kind of working quotation mark
+// ("", )
+using System;
+using System.Threading;
+class Program
+{
+	private static Random code = new Random();
+	private static Mutex mut = new Mutex();
+	private const int iterations = 1;
+	private static int loading = 5;//code.Next(1,10);
+	static void Main(string[] args)
+	{
+		for(int s = 0; s < loading; s++) {
+		Thread thread = new Thread(new ThreadStart(dock));
+		thread.Name = String.Format("Ship # {0}", code.Next(001,999));
+		thread.Start();
+		}
+		/*for(int i = 0; i < iterations; i++)
+		{
+			Console.WriteLine("Main thread: {0}", i);
+			Thread.Sleep(100);
+		}	
+		thread.Join();*/	
+	}
+	private static void dock()
+	{
+		for(int I = 0; I < iterations; I++)
+		{
+			dockWork();
+		}
+	}
+	private static void dockWork()
+	{
+		Console.WriteLine("{0} is entering port", Thread.CurrentThread.Name);
+		if(mut.WaitOne(600))
+		{
+		Console.WriteLine("{0} has docked", Thread.CurrentThread.Name);
+		Thread.Sleep(100);
+		Console.WriteLine("{0} has dropped:", Thread.CurrentThread.Name);
+		Console.WriteLine("--{0} units of inventory", code.Next(1, 100));
+		Console.WriteLine("--{0} employees", code.Next(1, 15));
+		Thread.Sleep(100);
+		Console.WriteLine("{0} has taken:", Thread.CurrentThread.Name);
+		Console.WriteLine("--{0} units of inventory", code.Next(10, 150));
+		Console.WriteLine("--{0} employees", code.Next(5, 30));
+		mut.ReleaseMutex(); //prevents deadlock
+		Console.WriteLine("{0} has left the port", Thread.CurrentThread.Name);
+		}
+		else
+		{
+		Console.WriteLine("{0} is unable to enter the shipyard", Thread.CurrentThread.Name);
+		}
+	}
+}
