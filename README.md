@@ -6,3 +6,6 @@ This code creates a simulated dockyard where ships enter, drop off their cargo a
 # Program.cs
 
 This file holds the main code.
+
+![image](https://github.com/user-attachments/assets/3d387b30-e039-422a-ac07-ced065a5ddd2)
+
