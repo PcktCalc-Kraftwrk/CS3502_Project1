@@ -25,4 +25,12 @@ The dockyard() method is where the meat of the program lies. For each thread sen
 
 # IPC_lsblk.cs
 
-This file holds the inter-proccesor communication
+This file is in charge of inter-proccesor communication using pipes
+
+![image](https://github.com/user-attachments/assets/f6072546-887a-44ee-b26e-37b6893d4657)
+
+This is the whole of the code, consisting of various System use calls and a method to search the console from top to bottom.
+
+![image](https://github.com/user-attachments/assets/2a0532b6-8637-4ed2-a256-91b55cfc4b9b)
+
+Using internal Linux commands and the pipe sign ('|'), the user can send the output of one into the input of another.
