@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks; 
     
 class Program { 
-  
     static void Main(string[] args) 
-    { 
+    {
         // Prints the block devices of the process and the pipes connecting them 
-        Console.WriteLine("Standard Input Stream: {0}",Console.In.ReadToEnd()); 
+        Console.WriteLine("Inter-Process Communication:\n{0}",Console.In.ReadToEnd()); 
     }  
 } 
     
